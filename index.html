@@ -42,18 +42,32 @@
 
       <h2 class="text-center">TODO LIST</h2>
       
-      <div class="input-group mb-3">
-        <input
-        type="text"
-        class="form-control"
-        id="taskInput"
-        placeholder="Enter task.."
-        />
-        <button class="btn btn-outline-primary" type="button" id="addTaskBtn">
-          Add Task
-        </button>
+      <div class="card todo-input">
+       
+        <div class="card-body">
+         
+      
+          <div class="input-group mb-3 ">
+            <input
+            type="text"
+            class="form-control"
+            id="taskInput"
+            placeholder="Enter task.."
+            />
+            <button class="btn btn-danger" type="button" id="addTaskBtn">
+              Add Task
+            </button>
+          </div>
+        </div>
       </div>
-      <ul id="taskList" ></ul>
+      <div class="card entered-todos">
+        <h5 class="card-header">TODOS</h5>
+        <div class="card-body">
+         
+          <ul id="taskList" ></ul>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -65,7 +79,7 @@
         <div class="col mb-3">
           <img
             src="https://picsum.photos/id/235/1000/500"
-            class="img-fluid img-thumbnail cursor modal-trigger thumbnail-size"
+            class="img-fluid img-thumbnail cursor modal-trigger thumbnail-size rounded"
             data-bs-toggle="modal"
             data-bs-target="#imageModal"
           />
