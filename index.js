@@ -6,10 +6,10 @@ $(document).ready(function(){
     let test = {
         display: null,
         taskInput: null,
-        $addTaskBtn: null,
-        $deleteBtn: null,
-        $cancelBtn: null,
-        $editBtn: null,
+        addTaskBtn: null,
+     
+        cancelBtn: null,
+       
         tasks: [],
         modal: null,
         modalImage: null,
@@ -22,11 +22,9 @@ $(document).ready(function(){
 
         init: function() {
             this.display = $("#taskList");
-            this.$addTaskBtn = $("#addTaskBtn");
-            this.$deleteBtn = $(".deleteBtn");
-            this.$cancelBtn = $(".cancelBtn");
-            this.$editBtn = $(".editBtn");
-            this.taskInput = $("#taskInput");
+            this.addTaskBtn = $("#addTaskBtn");
+           
+this.taskInput = $("#taskInput");
             this.loadTasksFromLocalStorage();
             this.modal = $('#imageModal');
             this.modalImage = $('#modalImage');
@@ -41,7 +39,7 @@ $(document).ready(function(){
         eventHandler: function() {
             let that = this;
 
-            this.$addTaskBtn.click(function() {
+            this.addTaskBtn.click(function() {
                 if ($(this).text() === "Update Task") {
                     that.updateTask();
                 } else {
@@ -62,16 +60,17 @@ $(document).ready(function(){
                 let taskLabel = $(this).closest("label");
                 let taskText = taskLabel.find("span").text();
                 that.taskInput.val(taskText);
-                that.$addTaskBtn.text("Update Task");
-                that.$addTaskBtn.data("task-id", taskLabel.index());
+                that.addTaskBtn.text("Update Task");
+                
+                that.addTaskBtn.data("task-id", taskLabel.index());
 
-                that.$cancelBtn = $("<button>").text("Cancel").addClass("btn btn-outline-secondary cancelBtn me-2");
-                that.$cancelBtn.appendTo(that.$addTaskBtn.parent());
+                that.cancelBtn = $("<button>").text("Cancel").addClass("btn btn-outline-secondary cancelBtn me-2");
+                that.cancelBtn.appendTo(that.addTaskBtn.parent());
 
-                that.$cancelBtn.click(function() {
+                that.cancelBtn.click(function() {
                     that.taskInput.val("");
-                    that.$addTaskBtn.text("Add Task");
-                    that.$cancelBtn.remove();
+                    that.addTaskBtn.text("Add Task");
+                    that.cancelBtn.remove();
                 });
             });
 
@@ -108,7 +107,8 @@ $(document).ready(function(){
         },
 
         updateTask: function() {
-            let taskId = this.$addTaskBtn.data("task-id");
+            let taskId = this.addTaskBtn.data("task-id");
+       
             let taskText = this.taskInput.val();
             if (taskText === "") {
                 return;
@@ -117,8 +117,8 @@ $(document).ready(function(){
             taskLabel.find("span").text(taskText);
             this.tasks[taskId] = taskText;
             this.taskInput.val("");
-            this.$addTaskBtn.text("Add Task");
-            this.$cancelBtn.remove();
+            this.addTaskBtn.text("Add Task");
+            this.cancelBtn.remove();
         },
 
         saveTasksToLocalStorage: function() {
@@ -144,7 +144,7 @@ $(document).ready(function(){
             let textSpan = $("<span>").addClass("flex-grow-1").text(taskText);
             let buttonsDiv = $("<div>").addClass("d-flex align-items-center");
 
-            let deleteBtn = $("<button>").text("Delete").addClass("btn btn-danger deleteBtn me-2");
+            let deleteBtn = $("<button>").text("Delete").addClass("btn btn-secondary deleteBtn me-2");
             let editBtn = $("<button>").text("Edit").addClass("btn btn-primary editBtn");
 
             checkbox.appendTo(label);
