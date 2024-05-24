@@ -11,9 +11,13 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous"
   />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -29,10 +33,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#" id="todoLink">To-Do List</a>
+              <a class="nav-link active" href="#" id="todoLink">To-Do List</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" id="galleryLink">Image Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="weatherLink">Weather App</a>
             </li>
           </ul>
         </div>
@@ -40,14 +47,14 @@
     </nav>
     <div id="todoSection" class="todoSectionStyle" >
 
-      <h2 class="text-center">TODO LIST</h2>
+      <h2 class="text-center title">TODO LIST</h2>
       
       <div class="card todo-input">
        
         <div class="card-body">
          
       
-          <div class="input-group mb-3 ">
+          <div class="input-group ">
             <input
             type="text"
             class="form-control"
@@ -61,7 +68,7 @@
         </div>
       </div>
       <div class="card entered-todos">
-        <h5 class="card-header">TODOS</h5>
+        <h5 class="card-header title">TODOS</h5>
         <div class="card-body">
          
           <ul id="taskList" ></ul>
@@ -70,10 +77,8 @@
      
     </div>
   </div>
-
-
-  <div id="gallerySection">
-    <h2 class="text-center">Image Gallery</h2>
+<div id="gallerySection">
+    <h2 class="text-center title">Image Gallery</h2>
     <div class="container">
       <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4">
         <div class="col mb-3">
@@ -124,13 +129,66 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body  ">
+            
             <img src="" id="modalImage" class="img-fluid" />
+            <div class="arrow d-flex justify-content-evenly py-3">
+              <div class="prev">
+            <i class="fa fa-chevron-left"></i>
+          </div>
+          <div class="next">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<div class="weatherContainer">
+    <h3 class="title">Weather App</h3>
+    <div class="weatherCard">
+      <div class="locationInputWrap">
+        <input
+          type="text"
+          placeholder="Enter location.."
+          class="locationInput"
+        />
+        <div class="searchIconWrap">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+      
+      </div>
+      <div class="weatherData">
+        <div class="weatherIconWrap">
+        <img src="" class="weatherIcon" alt="" />
+        <div class="cityWrap">
+        <h1 class="temp"></h1>
+        <h2 class="city"></h2>
+      </div>
+      </div>
+        <div class="details">
+          <div class="weatherCol">
+            <div>
+              <img src="images/humidity.png" alt="" />
+              <div class="humidity"></div>
+              <p>Humidity</p>
+            </div>
+          </div>
+          <div class="weatherCol">
+            <div>
+              <img src="images/wind.png" alt="" />
+              <div class="windSpeed"></div>
+              <p>Windspeed</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script
