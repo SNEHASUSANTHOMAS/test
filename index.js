@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     $("#gallerySection").hide();
     $("#todoSection").hide();
-
+$(".weatherContainer").hide();
     let test = {
         display: null,
         taskInput: null,
@@ -87,12 +87,17 @@ this.taskInput = $("#taskInput");
                 e.preventDefault();
                 that.todoSection.show();
                 that.gallerySection.hide();
+               
+               
+            $(".weatherContainer").hide();
             });
 
             this.galleryLink.click(function(e) {
                 e.preventDefault();
                 that.todoSection.hide();
                 that.gallerySection.show();
+              
+            $(".weatherContainer").hide();
             });
         },
 
@@ -155,6 +160,85 @@ this.taskInput = $("#taskInput");
             label.appendTo(this.display);
         }
     };
+    let weatherApp = {
+  
+        apiKey: null,
+        apiUrl: null,
+        response: null,
+        data: null,
+        city: null,
+        temp: null,
+        humidity: null,
+        windSpeed: null,
+        locationInput: null,
+        searchBtn: null,
+        weatherIcon:null,
+        weatherData:null,
+        card:null,
+        details:null,
+        init: function() {
+            this.apiKey = "f6a6380cc8fbade7eea6eb13be18f488";
+            this.apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=" + this.apiKey + "&q=";
+            this.city = $(".city");
+            this.temp = $(".temp");
+            this.humidity = $(".humidity");
+            this.windSpeed = $(".windSpeed");
+            this.locationInput = $(".locationInput");
+            this.searchBtn = $(".fa-search");
+            this.weatherIcon=$(".weatherIcon");
+            this.weatherData=$(".weatherData");
+            this.details=$(".details");
+            this.card = $(".container .card");
+  
+  
+            
+        },
+  
+        eventHandler: function() {
+            $(  "#weatherLink").click(function(){
+                $(".weatherContainer").show();
+                $("#gallerySection").hide();
+                $("#todoSection").hide();
+         
+            })
+            let that = this;
+
+            this.searchBtn.click(function() {
+                let location = that.locationInput.val(); 
+                if (location) {
+                 
+                  that.weatherData.css("display", "block");
+                    that.searchWeather(location);
+                    that.locationInput.val("");
+                }
+            });
+        },
+  
+        searchWeather: async function(location) {
+            try {
+                const response = await fetch(this.apiUrl + location);
+                if (!response.ok) {
+                    throw new Error('not found');
+                }
+                this.data = await response.json();
+                this.city.html(this.data.name);
+                this.temp.html(Math.round(this.data.main.temp) + '°c');
+                this.humidity.html(this.data.main.humidity + '%');
+                this.windSpeed.html(this.data.wind.speed + ' kmph');
+                const iconCode = this.data.weather[0].icon;
+                const iconUrl = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+                this.weatherIcon.attr("src", iconUrl);
+                this.weatherIcon.attr("alt", this.data.weather[0].description);
+                this.weatherData.addClass("show");
+                this.details.addClass("show");
+            } catch (error) {
+                console.error(' problem with fetch', error);
+            }
+        }
+    };
+  
+    weatherApp.init();
+    weatherApp.eventHandler(); 
 
     test.init();
     test.eventHandler();

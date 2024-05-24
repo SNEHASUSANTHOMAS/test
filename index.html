@@ -11,6 +11,10 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous"
   />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,6 +37,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" id="galleryLink">Image Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="weatherLink">Weather App</a>
             </li>
           </ul>
         </div>
@@ -126,6 +133,44 @@
           </div>
           <div class="modal-body">
             <img src="" id="modalImage" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weatherContainer">
+    <h3 class="title">Weather App</h3>
+    <div class="weatherCard">
+      <div class="locationInputWrap">
+        <input
+          type="text"
+          placeholder="Enter location.."
+          class="locationInput"
+        />
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </div>
+      <div class="weatherData">
+        <div class="weatherIconWrap">
+        <img src="" class="weatherIcon" alt="" />
+        <div class="cityWrap">
+        <h1 class="temp"></h1>
+        <h2 class="city"></h2>
+      </div>
+      </div>
+        <div class="details">
+          <div class="weatherCol">
+            <div>
+              <img src="images/humidity.png" alt="" />
+              <div class="humidity"></div>
+              <p>Humidity</p>
+            </div>
+          </div>
+          <div class="weatherCol">
+            <div>
+              <img src="images/wind.png" alt="" />
+              <div class="windSpeed"></div>
+              <p>Windspeed</p>
+            </div>
           </div>
         </div>
       </div>

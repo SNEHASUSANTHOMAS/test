@@ -44,5 +44,248 @@
         text-align: center;
     }
   }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background: #cecece;
+    font-family: 'Roboto',sans-serif;
+    color: #2c3e50;
+}
+.fa-search{
+    background-color: white;
+    width: 47px;
+    height: 40px;
+    font-size: 28px;
+    padding-top: 8px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    color: gray;
+}
+.weatherContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    height: 100%;
+}
+.weatherCard{
+color: whitesmoke;
+  max-width: 470px;
+   background: linear-gradient(135deg, #5c7a9a, #8c8c91);
+ max-height: 582px;
+    width: 90%;
   
+    margin: auto ;
+   
+    text-align: center;
+    padding: 50px;
+    border-radius: 20px;
+
+}
+
+.locationInputWrap{
+    
+ 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.locationInputWrap input{
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    outline: none;
+    padding: 2px;
+    padding-left: 15px;
+    border-radius: 15px;
+    flex: 1;
+    margin-right: 15px;
+    max-width: 290px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.weatherData,.details{
+    display: none;
+}
+.weatherData h1{
+    font-size: 80px;
+    font-weight: 500;
+}
+.weatherData h2{
+    font-size: 45px;
+    font-weight: 500;
+    
+}
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 10px;
+}
+.weatherData, .details {
+    display: none;
+    opacity: 0;
+   
+    transition: opacity 1s ease-in;
+}
+
+.weatherData.show, .details.show {
+    display: flex;
+    opacity: 1;
+  
+}
+.weatherIcon{
+    width: 180px;
+   
+
+    
+}
+.weatherCol{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-right: 10px;
+}
+.weatherCol img{
+    width: 40px;
+    margin-right: 10px;
+}
+.humidity,.wind{
+    font-size: 28px;
+}
+.title{
+    font-weight: 500;
+    font-size: 30px;
+    padding-top: 20px;
+    
+}
+@media only screen and (max-width: 766px) {
+    .weatherContainer{
+        
+        width: 100%;
+    }
+    
+    .weatherCard {
+        padding: 30px; 
+        max-width: 90%; 
+        display: flex;
+        width: auto;
+    
+     
+        justify-content: space-around;
+        flex-direction: column;
+
+    }
+    .locationInputWrap{display: flex;
+        justify-content: center;}
+
+    
+
+    .weatherIcon {
+        width: 80px; 
+    }
+
+    .weatherCol img {
+        width: 30px;
+    }
+    .fa-search {
+        width: 35px;
+        height: 35px;
+        font-size: 20px; 
+    }
+
+    .locationInputWrap input {
+        padding: 6px; 
+        padding-left: 15px;
+        border-radius: 10px; 
+        max-width: 224px;
+        width: 198px;
+        font-size: 20px;
+        margin-right: 8px;
+    }
+
+    .weatherData h1 {
+        font-size: 52px;
+    }
+
+    .weatherData h2 {
+        font-size: 30px;
+    }p{
+        font-size: 14px;
+    }
+
+    .humidity, .wind {
+        font-size: 24px; 
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .weatherCard {
+        padding: 30px; 
+        max-width: 90%; 
+        display: flex;
+       
+        justify-content: space-around;
+        flex-direction: column;
+
+    }
+    p{
+        font-size: 12px;
+    }
+    .locationInputWrap{display: flex;
+        justify-content: center;
+      margin-bottom: 10px;
+      }
+
+    
+
+    .weatherIcon {
+        width: 80px; 
+    }
+
+    .weatherCol img {
+        width: 30px;
+    }
+    .fa-search {
+        width: 31px;
+        height: 36px;
+        font-size: 18px; 
+    }
+
+    .locationInputWrap input {
+        padding: 6px; 
+        padding-left: 20px;
+        border-radius: 10px; 
+        width: 187px;
+        max-width: 224px;
+        font-size: 18px;
+        margin-right: 8px;
+    }
+
+    .weatherData h1 {
+        font-size: 40px;
+        margin-top: -5px;
+    }
+
+    .weatherData h2 {
+        font-size: 27px;
+    }
+
+    .humidity, .wind {
+        font-size: 20px; 
+    }
+}
+.weatherIconWrap{
+  display: flex;
+}
  
