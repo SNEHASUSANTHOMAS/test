@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
     $("#gallerySection").hide();
-    $("#todoSection").hide();
+   
 $(".weatherContainer").hide();
     let test = {
         display: null,
@@ -188,7 +188,7 @@ this.taskInput = $("#taskInput");
             this.weatherIcon=$(".weatherIcon");
             this.weatherData=$(".weatherData");
             this.details=$(".details");
-            this.card = $(".container .card");
+            this.card = $(".weatherCard");
   
   
             
