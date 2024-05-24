@@ -18,9 +18,11 @@
     
     padding-left: 0 !important;
   }
+ 
   .todo-input{
-    background-color: rgb(66 65 59) 
-    !important;
+    background: linear-gradient(135deg, #4298dd, #2c2c91)!important;
+    border-radius: 20px !important;
+   
   }
   .entered-todos{
     border-radius: 20px !important;
@@ -53,7 +55,7 @@
 body{
     width: 100%;
     height: 100vh;
-    background-color: #0a1760 !important;
+    background:linear-gradient(#2e78ad,#1f1f7a)!important;
     font-family: 'Roboto',sans-serif;
     color: #2c3e50;
 }
@@ -71,19 +73,16 @@ color: whitesmoke;
   background: linear-gradient(135deg, #4298dd, #2c2c91);
  max-height: 582px;
     width: 90%;
-  
-    margin: auto ;
-   
-    text-align: center;
+   margin: auto ;
+ text-align: center;
     padding: 50px;
     border-radius: 20px;
 
 }
 
 .locationInputWrap{
-    
- 
-    width: 100%;
+   width: 91%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -138,8 +137,6 @@ color: whitesmoke;
 .weatherIcon{
     width: 180px;
    
-
-    
 }
 .weatherCol{
     display: flex;
@@ -196,10 +193,10 @@ color: whitesmoke;
     .locationInputWrap input {
         padding: 6px; 
         padding-left: 15px;
-        border-radius: 10px; 
+        border-radius: 15px; 
         max-width: 224px;
         width: 198px;
-        font-size: 16px;
+        font-size: 13px;
         margin-right: 8px;
     }
 
@@ -253,8 +250,15 @@ color: whitesmoke;
         border-radius: 10px; 
         width: 187px;
         max-width: 224px;
-        font-size: 18px;
+        font-size: 13px;
         margin-right: 8px;
+    }
+    .searchIconWrap {
+       
+        width: 31.5px;
+        height: 31.5px;
+      
+       
     }
 
     .weatherData h1 {
@@ -281,12 +285,16 @@ color: whitesmoke;
     justify-content: center;
     align-items: center;
     background-color: white;
-    width: 40px;
-    height: 40px;
+    width: 31px;
+    height: 31px;
     color: gray;
     border-radius: 50%;
+    cursor: pointer;
     
 }
 .title{
     color: #f4f4f4;
+}
+.arrow{
+    font-size: 20px !important;
 }

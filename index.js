@@ -1,15 +1,9 @@
 $(document).ready(function(){
-    
-    $("#gallerySection").hide();
-   
-$(".weatherContainer").hide();
     let test = {
         display: null,
         taskInput: null,
         addTaskBtn: null,
-     
         cancelBtn: null,
-       
         tasks: [],
         modal: null,
         modalImage: null,
@@ -19,12 +13,31 @@ $(".weatherContainer").hide();
         thumbnailSize: null,
         todoSection: null,
         gallerySection: null,
+        apiKey: null,
+        apiUrl: null,
+        response: null,
+        data: null,
+        city: null,
+        temp: null,
+        humidity: null,
+        windSpeed: null,
+        locationInput: null,
+        searchBtn: null,
+        weatherIcon:null,
+        weatherData:null,
+        card:null,
+        details:null,
+        weatherLink:null,
+        index:null,
+        images:[],
+        prev:null,
+        next:null,
+        weatherContainer:null,
 
         init: function() {
             this.display = $("#taskList");
             this.addTaskBtn = $("#addTaskBtn");
-           
-this.taskInput = $("#taskInput");
+            this.taskInput = $("#taskInput");
             this.loadTasksFromLocalStorage();
             this.modal = $('#imageModal');
             this.modalImage = $('#modalImage');
@@ -34,9 +47,31 @@ this.taskInput = $("#taskInput");
             this.thumbnailSize = $(".thumbnail-size");
             this.todoSection = $("#todoSection");
             this.gallerySection = $("#gallerySection");
+            this.weatherContainer=$(".weatherContainer");
+            this.apiKey = "f6a6380cc8fbade7eea6eb13be18f488";
+            this.apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=" + this.apiKey + "&q=";
+            this.city = $(".city");
+            this.temp = $(".temp");
+            this.humidity = $(".humidity");
+            this.windSpeed = $(".windSpeed");
+            this.locationInput = $(".locationInput");
+            this.searchBtn = $(".searchIconWrap");
+            this.weatherIcon=$(".weatherIcon");
+            this.weatherData=$(".weatherData");
+            this.details=$(".details");
+            this.card = $(".weatherCard");
+            this.weatherLink=$(  "#weatherLink");
+            this.index=0;
+            this.images=$(".img-fluid").get();
+            
+            this.prev=$(".prev");
+            this.next=$(".next");
+            
         },
 
         eventHandler: function() {
+            this.gallerySection.hide();
+            this.weatherContainer.hide();
             let that = this;
 
             this.addTaskBtn.click(function() {
@@ -72,8 +107,17 @@ this.taskInput = $("#taskInput");
                     that.addTaskBtn.text("Add Task");
                     that.cancelBtn.remove();
                 });
+             
+            });
+            this.prev.click(function(){
+                that.prevImage();
             });
 
+   
+
+            this.next.click(function(){
+                that.nextImage();
+            })
             this.modalTrigger.click(function() {
                 let imageSrc = $(this).attr("src");
                 that.modalImage.attr("src", imageSrc);
@@ -87,18 +131,67 @@ this.taskInput = $("#taskInput");
                 e.preventDefault();
                 that.todoSection.show();
                 that.gallerySection.hide();
-               
-               
-            $(".weatherContainer").hide();
+                $(".weatherContainer").hide();
+                that.updateActiveClass($(this));
+
             });
 
             this.galleryLink.click(function(e) {
                 e.preventDefault();
                 that.todoSection.hide();
                 that.gallerySection.show();
-              
-            $(".weatherContainer").hide();
+                that.weatherContainer.hide();
+                that.updateActiveClass($(this));
+
             });
+            this.weatherLink.click(function(e){
+                e.preventDefault();
+              
+                that.weatherContainer.show();
+                that.gallerySection.hide();
+                that.todoSection.hide();
+                that.updateActiveClass($(this));
+            });
+            this.searchBtn.click(function() {
+                let location = that.locationInput.val(); 
+                if (location) {
+                 
+                  that.weatherData.css("display", "block");
+                    that.searchWeather(location);
+                    that.locationInput.val("");
+                }
+            });
+        },
+        prevImage:function(){
+            
+            this.index--;
+            if(this.index<0){
+                this.index=this.images.length-1;
+            }
+            
+            this.showImage(this.index);
+        },
+        nextImage:function(){
+           
+            this.index++;
+            if(this.index>=this.images.length){
+                this.index=0;
+            }
+            
+            
+            this.showImage(this.index);
+
+        },
+        showImage: function(index) {
+            
+            let selectedImage = $(this.images[index]).attr("src");
+            this.modalImage.attr("src", selectedImage);
+        },
+        updateActiveClass:function(navItem){
+            $(".nav-link").removeClass("active");
+
+            navItem.addClass("active");
+
         },
 
         addTask: function() {
@@ -149,8 +242,8 @@ this.taskInput = $("#taskInput");
             let textSpan = $("<span>").addClass("flex-grow-1").text(taskText);
             let buttonsDiv = $("<div>").addClass("d-flex align-items-center");
 
-            let deleteBtn = $("<button>").text("Delete").addClass("btn btn-secondary deleteBtn me-2");
-            let editBtn = $("<button>").text("Edit").addClass("btn btn-primary editBtn");
+            let deleteBtn = $("<button>").text("Delete").addClass("btn btn-danger deleteBtn me-2");
+            let editBtn = $("<button>").text("Edit").addClass("btn btn-secondary editBtn");
 
             checkbox.appendTo(label);
             textSpan.appendTo(label);
@@ -158,61 +251,7 @@ this.taskInput = $("#taskInput");
             editBtn.appendTo(buttonsDiv);
             buttonsDiv.appendTo(label);
             label.appendTo(this.display);
-        }
-    };
-    let weatherApp = {
-  
-        apiKey: null,
-        apiUrl: null,
-        response: null,
-        data: null,
-        city: null,
-        temp: null,
-        humidity: null,
-        windSpeed: null,
-        locationInput: null,
-        searchBtn: null,
-        weatherIcon:null,
-        weatherData:null,
-        card:null,
-        details:null,
-        init: function() {
-            this.apiKey = "f6a6380cc8fbade7eea6eb13be18f488";
-            this.apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=" + this.apiKey + "&q=";
-            this.city = $(".city");
-            this.temp = $(".temp");
-            this.humidity = $(".humidity");
-            this.windSpeed = $(".windSpeed");
-            this.locationInput = $(".locationInput");
-            this.searchBtn = $(".fa-search");
-            this.weatherIcon=$(".weatherIcon");
-            this.weatherData=$(".weatherData");
-            this.details=$(".details");
-            this.card = $(".weatherCard");
-  
-  
-            
         },
-  
-        eventHandler: function() {
-            $(  "#weatherLink").click(function(){
-                $(".weatherContainer").show();
-                $("#gallerySection").hide();
-                $("#todoSection").hide();
-            })
-            let that = this;
-
-            this.searchBtn.click(function() {
-                let location = that.locationInput.val(); 
-                if (location) {
-                 
-                  that.weatherData.css("display", "block");
-                    that.searchWeather(location);
-                    that.locationInput.val("");
-                }
-            });
-        },
-  
         searchWeather: async function(location) {
             try {
                 const response = await fetch(this.apiUrl + location);
@@ -236,8 +275,6 @@ this.taskInput = $("#taskInput");
         }
     };
   
-    weatherApp.init();
-    weatherApp.eventHandler(); 
 
     test.init();
     test.eventHandler();
