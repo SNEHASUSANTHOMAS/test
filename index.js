@@ -199,7 +199,6 @@ this.taskInput = $("#taskInput");
                 $(".weatherContainer").show();
                 $("#gallerySection").hide();
                 $("#todoSection").hide();
-         
             })
             let that = this;
 
