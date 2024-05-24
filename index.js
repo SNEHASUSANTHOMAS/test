@@ -99,7 +99,7 @@ $(document).ready(function(){
                 
                 that.addTaskBtn.data("task-id", taskLabel.index());
 
-                that.cancelBtn = $("<button>").text("Cancel").addClass("btn btn-outline-secondary cancelBtn me-2");
+                that.cancelBtn = $("<button>").text("Cancel").addClass("btn btn-secondary cancelBtn me-2");
                 that.cancelBtn.appendTo(that.addTaskBtn.parent());
 
                 that.cancelBtn.click(function() {
@@ -131,7 +131,7 @@ $(document).ready(function(){
                 e.preventDefault();
                 that.todoSection.show();
                 that.gallerySection.hide();
-                $(".weatherContainer").hide();
+               that.weatherContainer.hide();
                 that.updateActiveClass($(this));
 
             });
@@ -189,7 +189,6 @@ $(document).ready(function(){
         },
         updateActiveClass:function(navItem){
             $(".nav-link").removeClass("active");
-
             navItem.addClass("active");
 
         },
