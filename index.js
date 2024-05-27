@@ -63,7 +63,6 @@ $(document).ready(function(){
             this.weatherLink=$(  "#weatherLink");
             this.index=0;
             this.images=$(".img-fluid").get();
-            
             this.prev=$(".prev");
             this.next=$(".next");
             
@@ -91,29 +90,26 @@ $(document).ready(function(){
             });
 
             this.display.on("click", ".editBtn", function() {
-                $(this).hide();
-                let taskLabel = $(this).closest("label");
-                let taskText = taskLabel.find("span").text();
-                that.taskInput.val(taskText);
-                that.addTaskBtn.text("Update Task");
-                
-                that.addTaskBtn.data("task-id", taskLabel.index());
-
-                that.cancelBtn = $("<button>").text("Cancel").addClass("btn btn-secondary cancelBtn me-2");
-                that.cancelBtn.appendTo(that.addTaskBtn.parent());
-
-                that.cancelBtn.click(function() {
-                    that.taskInput.val("");
-                    that.addTaskBtn.text("Add Task");
-                    that.cancelBtn.remove();
-                });
+                if(that.taskInput.val()==''){
+                    let taskLabel = $(this).closest("label");
+                    let taskText = taskLabel.find("span").text();
+                    that.taskInput.val(taskText);
+                    that.addTaskBtn.text("Update Task");
+                    that.addTaskBtn.data("task-id", taskLabel.index());
+                    that.cancelBtn = $("<button>").text("Cancel").addClass("btn btn-secondary cancelBtn me-2");
+                    that.cancelBtn.appendTo(that.addTaskBtn.parent());
+                    that.cancelBtn.click(function() {
+                        that.taskInput.val("");
+                        that.addTaskBtn.text("Add Task");
+                        that.cancelBtn.remove();
+                    });
+                }
              
             });
+
             this.prev.click(function(){
                 that.prevImage();
             });
-
-   
 
             this.next.click(function(){
                 that.nextImage();
@@ -121,7 +117,6 @@ $(document).ready(function(){
             this.modalTrigger.click(function() {
                 let imageSrc = $(this).attr("src");
                 that.modalImage.attr("src", imageSrc);
-
                 if ($(window).width() < 768) {
                     that.thumbnailSize.removeClass("img-fluid");
                 }
@@ -131,7 +126,7 @@ $(document).ready(function(){
                 e.preventDefault();
                 that.todoSection.show();
                 that.gallerySection.hide();
-               that.weatherContainer.hide();
+                that.weatherContainer.hide();
                 that.updateActiveClass($(this));
 
             });
@@ -146,7 +141,6 @@ $(document).ready(function(){
             });
             this.weatherLink.click(function(e){
                 e.preventDefault();
-              
                 that.weatherContainer.show();
                 that.gallerySection.hide();
                 that.todoSection.hide();
@@ -155,8 +149,7 @@ $(document).ready(function(){
             this.searchBtn.click(function() {
                 let location = that.locationInput.val(); 
                 if (location) {
-                 
-                  that.weatherData.css("display", "block");
+                    that.weatherData.css("display", "block");
                     that.searchWeather(location);
                     that.locationInput.val("");
                 }
@@ -168,22 +161,17 @@ $(document).ready(function(){
             if(this.index<0){
                 this.index=this.images.length-1;
             }
-            
             this.showImage(this.index);
         },
         nextImage:function(){
-           
             this.index++;
             if(this.index>=this.images.length){
                 this.index=0;
             }
-            
-            
             this.showImage(this.index);
 
         },
         showImage: function(index) {
-            
             let selectedImage = $(this.images[index]).attr("src");
             this.modalImage.attr("src", selectedImage);
         },
@@ -205,7 +193,6 @@ $(document).ready(function(){
 
         updateTask: function() {
             let taskId = this.addTaskBtn.data("task-id");
-       
             let taskText = this.taskInput.val();
             if (taskText === "") {
                 return;
@@ -240,10 +227,8 @@ $(document).ready(function(){
             });
             let textSpan = $("<span>").addClass("flex-grow-1").text(taskText);
             let buttonsDiv = $("<div>").addClass("d-flex align-items-center");
-
             let deleteBtn = $("<button>").text("Delete").addClass("btn btn-danger deleteBtn me-2");
             let editBtn = $("<button>").text("Edit").addClass("btn btn-secondary editBtn");
-
             checkbox.appendTo(label);
             textSpan.appendTo(label);
             deleteBtn.appendTo(buttonsDiv);
@@ -268,7 +253,8 @@ $(document).ready(function(){
                 this.weatherIcon.attr("alt", this.data.weather[0].description);
                 this.weatherData.addClass("show");
                 this.details.addClass("show");
-            } catch (error) {
+                } 
+            catch (error) {
                 console.error(' problem with fetch', error);
             }
         }
